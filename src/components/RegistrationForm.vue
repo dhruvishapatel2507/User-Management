@@ -295,7 +295,7 @@ export default {
             }).then((r) => {
                 alert('submitted', r);
                 this.$router.push({
-                    name: 'HomePage'
+                    path: '/homepage',
                 });
             }).catch((e) => {
                 console.log('error', e.response.data.errors);

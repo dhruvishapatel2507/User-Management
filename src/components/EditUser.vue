@@ -1,5 +1,7 @@
 <template>
-<div class="container">
+    <div>
+        <HeaderPage />
+    <div class="container">
     <h1>Edit User Details</h1>
     <form class="row g-3" @submit.prevent="editUSer()">
         <div class="col-md-6">
@@ -115,13 +117,18 @@
         </div>
     </form>
 </div>
+</div>
 </template>
 
 <script>
 import api from '@/api/api';
+import HeaderPage from './HeaderPage.vue';
 
 export default {
     name: 'EditUser',
+    components: {
+        HeaderPage,
+    },
     data() {
         return {
             errors: {},
@@ -143,7 +150,7 @@ export default {
     },
     mounted() {
         api.get(`/api/users/${this.$route.params.id}`).then((r) => {
-            this.name = r.data.name,
+                this.name = r.data.name,
                 this.email = r.data.email,
                 this.middlename = r.data.middlename,
                 this.surname = r.data.surname,
@@ -182,7 +189,7 @@ export default {
             }).then((r) => {
                 alert("submitted", r)
                 this.$router.push({
-                    name: 'HomePage'
+                    path: '/home'
                 })
             }).catch((e) => {
                 console.log("error", e)

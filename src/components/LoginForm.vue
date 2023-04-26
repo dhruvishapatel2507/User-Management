@@ -20,7 +20,7 @@
             <button type="submit" class="btn btn-primary">Sign in</button>
         </div>
         <div class="newuser">
-            <router-link to="/registrationform">Create New User</router-link>
+            <router-link to="/registration">Create New User</router-link>
         </div>
     </form>
 </div>
@@ -63,7 +63,7 @@ export default {
                 console.log('submitted', r.data.token);
                 localStorage.setItem("token", r.data.token);
                 this.$router.push({
-                    name: 'HomePage'
+                    path: '/home',
                 })
             }).catch(() => {
                 alert('invalid email or password');
