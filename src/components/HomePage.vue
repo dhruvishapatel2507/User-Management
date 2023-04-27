@@ -1,6 +1,7 @@
 <template>
 <div>
-    <HeaderPage @id="getMeId($event)" />
+    <HeaderPage />
+    <h1>USER MANAGEMENT</h1>
     <table class="table">
         <thead class="table-light">
             <tr>
@@ -14,22 +15,22 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody v-for="item in users" :key="item.id">
+        <tbody v-for="user in user" :key="user.id">
             <tr>
-                <td>{{ item.surname }} {{ item.name }} {{ item.middlename }} </td>
-                <td>{{ item.email }}</td>
-                <td>{{ item.address_line1 }} , {{ item.address_line2 }} , {{ item.city }} , {{ item.state }} , {{ item.country }} , {{ item.zipcode }}</td>
-                <td>{{ item.phone }}</td>
-                <td>{{ item.gender }}</td>
-                <td>{{ item.birth_date }}</td>
-                <td>{{ item.hobby }}</td>
+                <td>{{ user.surname }} {{ user.name }} {{ user.middlename }} </td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.address_line1 }} , {{ user.address_line2 }} , {{ user.city }} , {{ user.state }} , {{ user.country }} , {{ user.zipcode }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.gender }}</td>
+                <td>{{ user.birth_date }}</td>
+                <td>{{ user.hobby }}</td>
                 <td>
-                    <button class="red" v-on:click="deleteUser(item.id)" :disabled="meid == item.id">Delete</button>
-                    <button class="blue" :disabled="meid == item.id">
-                        <router-link class="button" :to="`/edit/${item.id}`" :disabled="meid == item.id" :event="meid == item.id ? '' : 'click'">Upadate</router-link>
+                    <button class="red" v-on:click="deleteUser(user.id)" :disabled="users.id == user.id">Delete</button>
+                    <button class="blue" :disabled="users.id == user.id">
+                        <router-link class="button" :to="`/edit/${user.id}`" :disabled="users.id == user.id" :event="users.id == user.id ? '' : 'click'">Upadate</router-link>
                     </button>
                     <button class="green">
-                        <router-link class="button" :to="`/view/${item.id}`">View</router-link>
+                        <router-link class="button" :to="`/view/${user.id}`" :disabled="users.id == user.id" :event="users.id == user.id ? '' : 'click'">View</router-link>
                     </button>
                 </td>
             </tr>
@@ -47,16 +48,20 @@ export default {
     components: {
         HeaderPage,
     },
+    computed: {
+        users() {
+            return this.$store.getters.users;
+        },
+    },
     data() {
         return {
-            meid: '',
-            users: [],
+            user: [],
         }
     },
     methods: {
         async userData() {
             await api.get("/api/users").then((r) => {
-                this.users = r.data;
+                this.user = r.data;
             }).catch((e) => {
                 console.log("error", e)
             });
@@ -75,8 +80,9 @@ export default {
         }
     },
 
-    async mounted() {
+    mounted() {
         this.userData();
+        this.$store.dispatch('users');
     },
 
 }
@@ -114,5 +120,10 @@ td {
 .blue {
     background-color: blue;
     margin: 5px;
+}
+
+h1 {
+    color: cadetblue;
+    text-align: center;
 }
 </style>

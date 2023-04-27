@@ -5,17 +5,21 @@ import HomePage from './components/HomePage.vue';
 import EditUser from './components/EditUser.vue';
 import ViewUser from './components/ViewUser.vue';
 import HeaderPage from './components/HeaderPage.vue';
+import ViewLoginUser from './components/ViewLoginUser.vue';
+import ForgotPass from './components/ForgotPass.vue';
 import auth from './middleware/auth';
+import guest from './middleware/guest'
 
 const router = [
     {
         path: '/registration',
         component: RegistrationForm,
-        mode: 'history',
+        beforeEnter:guest
     },
     {
         path: '/login',
         component: LoginForm,
+        beforeEnter:guest
     },
     {
         path: '/home',
@@ -34,47 +38,15 @@ const router = [
         path: '/header',
         component: HeaderPage
     },
+    {
+        path: '/loginuser/:id',
+        component: ViewLoginUser
+    },
+    {
+        path: '/forgotpass',
+        component: ForgotPass
+    }
 
 ];
-
-// // Creates a `nextMiddleware()` function which not only
-// // runs the default `next()` callback but also triggers
-// // the subsequent Middleware function.
-// function nextFactory(context, middleware, index) {
-//     const subsequentMiddleware = middleware[index];
-//     // If no subsequent Middleware exists,
-//     // the default `next()` callback is returned.
-//     if (!subsequentMiddleware) return context.next;
-
-//     return (...parameters) => {
-//         // Run the default Vue Router `next()` callback first.
-//         context.next(...parameters);
-//         // Then run the subsequent Middleware with a new
-//         // `nextMiddleware()` callback.
-//         const nextMiddleware = nextFactory(context, middleware, index  + 1);
-//         subsequentMiddleware({ ...context, next: nextMiddleware });
-//     };
-// }
-
-// router.beforeEach((to, from, next) => {
-//     if (to.meta.middleware) {
-//         const middleware = Array.isArray(to.meta.middleware)
-//             ? to.meta.middleware
-//             : [to.meta.middleware];
-
-//         const context = {
-//             from,
-//             next,
-//             router,
-//             to,
-//         };
-//         const nextMiddleware = nextFactory(context, middleware, 1);
-
-//         return middleware[0]({ ...context, next: nextMiddleware });
-//     }
-
-//     return next();
-// });
-
 
 export default router;

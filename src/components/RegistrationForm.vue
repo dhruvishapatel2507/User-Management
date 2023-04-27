@@ -121,7 +121,11 @@
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Sign in</button>
+            <button type="submit" class="btn btn-primary button">
+                <router-link class="button" :to="`/login`">Log In</router-link>
+            </button>
         </div>
+       
     </form>
 </div>
 </template>
@@ -336,5 +340,11 @@ h1 {
 
 .form-label {
     color: cadetblue;
+}
+.button {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    margin-left: 10px;
 }
 </style>

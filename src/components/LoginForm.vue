@@ -17,7 +17,12 @@
             </div>
         </div>
         <div class="button">
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            <div style="margin-bottom:15px">
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </div>
+            <div>
+                <router-link to="/forgotpass">Forgot Password</router-link>
+            </div>
         </div>
         <div class="newuser">
             <router-link to="/registration">Create New User</router-link>
@@ -60,7 +65,6 @@ export default {
                 email: this.email,
                 password: this.password,
             }).then((r) => {
-                console.log('submitted', r.data.token);
                 localStorage.setItem("token", r.data.token);
                 this.$router.push({
                     path: '/home',

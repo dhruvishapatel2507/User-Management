@@ -1,26 +1,29 @@
 <template>
 <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
         <div class="container-fluid">
             <router-link :to="`/home`" class="navbar-brand" href="#">Home</router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <router-link :to="`/registration`" class="nav-link active" aria-current="page" href="#">Registration</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link :to="`/login`" class="nav-link" href="#">Login</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="navbar-brand" href="#" v-on:click="logout">Logout</a>
                     </li>
                 </ul>
-                <form class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <h1>Welcome,{{name}}</h1>
+
+                <form class="navbar-nav ms-auto mb-2 mb-lg-0 form">
+                    <h1>Hellow, {{ users.name }}</h1>
+                    <button class="btn">
+                        <router-link class="button" :to="`/loginuser/${users.id}`">
+                            <i class="bi bi-person-fill icon-white"></i>Profile
+                        </router-link>
+                    </button>
                 </form>
+
             </div>
         </div>
     </nav>
@@ -31,29 +34,49 @@
 import api from '@/api/api';
 export default {
     name: 'HeaderPage',
-    data() {
-        return {
-            name: '',
-        }
-    },
-    methods:{
-    async personalData() {
-            await api.get("/api/me").then((r) => {
-                this.name = r.data.name;
-                this.$emit('id',r.data.id)
-            }).catch((e) => {
-                console.log("error", e)
-            });
+    computed: {
+        users() {
+            return this.$store.getters.users;
         },
     },
-    async mounted() {
-        this.personalData();
+    methods: {
+        async logout() {
+            if (confirm("do you really want to logout")) {
+                await api.post("/api/logout").then((r) => {
+                    localStorage.clear(r);
+                }).catch((e) => {
+                    console.log("error", e)
+                });
+                this.$router.push({
+                    path: '/login'
+                })
+            }
+        }
+    },
+    mounted() {
+        this.$store.dispatch('users');
     },
 }
 </script>
+
 <style scoped>
 h1 {
     color: white;
     font-size: 20px;
+    text-align: center;
+}
+
+.icon-white {
+    color: white;
+}
+
+.form {
+    display: flex;
+    align-items: baseline;
+}
+
+.button {
+    text-decoration: none;
+    color: white;
 }
 </style>

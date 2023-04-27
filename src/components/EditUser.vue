@@ -194,8 +194,8 @@ export default {
             }).catch((e) => {
                 console.log("error", e)
             })
-        }
-    }
+        },
+    },
 }
 </script>
 
