@@ -125,7 +125,7 @@
                 <router-link class="button" :to="`/login`">Log In</router-link>
             </button>
         </div>
-       
+
     </form>
 </div>
 </template>
@@ -299,7 +299,7 @@ export default {
             }).then((r) => {
                 alert('submitted', r);
                 this.$router.push({
-                    path: '/homepage',
+                    path: '/home',
                 });
             }).catch((e) => {
                 console.log('error', e.response.data.errors);
@@ -341,6 +341,7 @@ h1 {
 .form-label {
     color: cadetblue;
 }
+
 .button {
     text-decoration: none;
     color: white;

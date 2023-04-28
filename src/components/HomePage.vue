@@ -24,13 +24,13 @@
                 <td>{{ user.gender }}</td>
                 <td>{{ user.birth_date }}</td>
                 <td>{{ user.hobby }}</td>
-                <td>
-                    <button class="red" v-on:click="deleteUser(user.id)" :disabled="users.id == user.id">Delete</button>
-                    <button class="blue" :disabled="users.id == user.id">
-                        <router-link class="button" :to="`/edit/${user.id}`" :disabled="users.id == user.id" :event="users.id == user.id ? '' : 'click'">Upadate</router-link>
+                <td class="d-contents">
+                    <button class="red" v-on:click="deleteUser(user.id)" :disabled="me.id == user.id">Delete</button>
+                    <button class="blue" :disabled="me.id == user.id">
+                        <router-link class="button" :to="`/edit/${user.id}`" :disabled="me.id == user.id" :event="me.id == user.id ? '' : 'click'">Upadate</router-link>
                     </button>
                     <button class="green">
-                        <router-link class="button" :to="`/view/${user.id}`" :disabled="users.id == user.id" :event="users.id == user.id ? '' : 'click'">View</router-link>
+                        <router-link class="button" :to="`/view/${user.id}`" :disabled="me.id == user.id" :event="me.id == user.id ? '' : 'click'">View</router-link>
                     </button>
                 </td>
             </tr>
@@ -49,8 +49,8 @@ export default {
         HeaderPage,
     },
     computed: {
-        users() {
-            return this.$store.getters.users;
+        me() {
+            return this.$store.getters.me;
         },
     },
     data() {
@@ -67,7 +67,7 @@ export default {
             });
         },
         async deleteUser(id) {
-            if (confirm("do ypu really want to delete")) {
+            if (confirm("do you really want to delete")) {
                 await api.delete(`/api/users/${id}`).then(() => {
                     this.userData()
                 }).catch((e) => {
@@ -82,7 +82,7 @@ export default {
 
     mounted() {
         this.userData();
-        this.$store.dispatch('users');
+        this.$store.dispatch('me');
     },
 
 }

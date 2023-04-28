@@ -20,9 +20,6 @@
             <div style="margin-bottom:15px">
                 <button type="submit" class="btn btn-primary">Sign in</button>
             </div>
-            <div>
-                <router-link to="/forgotpass">Forgot Password</router-link>
-            </div>
         </div>
         <div class="newuser">
             <router-link to="/registration">Create New User</router-link>
@@ -99,8 +96,7 @@ h1 {
 
 .col-form-label {
     color: cadetblue;
-    font-size: 25px;
-    padding-right: 60px;
+    font-size: 18px;
 }
 
 .button {

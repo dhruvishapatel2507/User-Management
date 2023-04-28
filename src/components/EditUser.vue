@@ -7,43 +7,35 @@
         <div class="col-md-6">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" id="name" v-model="name" />
-            <div v-if="errors.name" class="validation">{{ errors.name }}</div>
         </div>
         <div class="col-md-6">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" v-model="email" />
-            <div class="validation" v-if="errors.email">{{ errors.email }}</div>
         </div>
 
         <div class="col-md-6">
             <label for="middlename" class="form-label">middlename</label>
             <input type="text" class="form-control" id="middlename" v-model="middlename" />
-            <div class="validation" v-if="errors.middlename">{{ errors.middlename }}</div>
         </div>
         <div class="col-md-6">
             <label for="surname" class="form-label">surname</label>
             <input type="text" class="form-control" id="surname" v-model="surname" />
-            <div class="validation" v-if="errors.surname">{{ errors.surname }}</div>
         </div>
         <div class="col-12">
             <label for="address_line1" class="form-label">address_line1</label>
             <input type="text" class="form-control" id="address_line1" placeholder="1234 Main St" v-model="address_line1" />
-            <div class="validation" v-if="errors.address_line1">{{ errors.address_line1 }}</div>
         </div>
         <div class="col-12">
             <label for="address_line2" class="form-label">address_line2</label>
             <input type="text" class="form-control" id="address_line2" placeholder="Apartment, studio, or floor" v-model="address_line2" />
-            <div class="validation" v-if="errors.address_line2">{{ errors.address_line2 }}</div>
         </div>
         <div class="col-md-4">
             <label for="city" class="form-label">City</label>
             <input type="text" class="form-control" id="city" v-model="city" />
-            <div class="validation" v-if="errors.city">{{ errors.city }}</div>
         </div>
         <div class="col-md-2">
             <label for="state" class="form-label">state</label>
             <input type="text" class="form-control" id="state" v-model="state" />
-            <div class="validation" v-if="errors.state">{{ errors.state }}</div>
         </div>
         <div class="col-md-4">
             <label for="country" class="form-label">country</label>
@@ -53,22 +45,18 @@
                 <option value="India">India</option>
                 <option value="Canada">Canada</option>
             </select>
-            <div class="validation" v-if="errors.country">{{ errors.country }}</div>
         </div>
         <div class="col-md-2">
             <label for="zipcode" class="form-label">zipcode</label>
             <input type="text" class="form-control" id="zipcode" v-model="zipcode" />
-            <div class="validation" v-if="errors.zipcode">{{ errors.zipcode }}</div>
         </div>
         <div class="col-md-6">
             <label for="phone" class="form-label">phone</label>
             <input type="text" class="form-control" id="phone" v-model="phone" />
-            <div class="validation" v-if="errors.phone">{{ errors.phone }}</div>
         </div>
         <div class="col-md-6">
             <label for="birth_date" class="form-label">birth_date</label>
             <input type="date" class="form-control" id="birth_date" v-model="birth_date" />
-            <div class="validation" v-if="errors.birth_date">{{ errors.birth_date }}</div>
         </div>
         <div class="col-md-6">
             <label for="gender" class="form-label">gender</label>
@@ -86,8 +74,8 @@
                     </label>
                 </div>
             </div>
-            <div class="validation" v-if="errors.gender">{{ errors.gender }}</div>
-        </div>
+            </div>
+            </form>
         <div class="col-md-6">
             <label for="hobby" class="form-label">hobby</label>
             <div class="radio">
@@ -110,12 +98,13 @@
                     </label>
                 </div>
             </div>
-            <div class="validation" v-if="errors.hobby">{{ errors.hobby }}</div>
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary ms-2 button">
+                <router-link class="button" :to="`/home`">Back</router-link>
+            </button>
         </div>
-    </form>
 </div>
 </div>
 </template>
@@ -130,8 +119,7 @@ export default {
         HeaderPage,
     },
     data() {
-        return {
-            errors: {},
+        return{
             name: "",
             email: "",
             middlename: "",
@@ -227,5 +215,9 @@ h1 {
 
 .form-label {
     color: cadetblue;
+}
+.button {
+    text-decoration: none;
+    color:white;
 }
 </style>

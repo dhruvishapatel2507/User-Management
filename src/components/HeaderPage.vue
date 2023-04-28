@@ -14,11 +14,16 @@
                         <a class="navbar-brand" href="#" v-on:click="logout">Logout</a>
                     </li>
                 </ul>
+                <button class="btn">
+                    <router-link class="button navbar-brand" :to="`/addnewuser`">
+                        AddNewUSer
+                    </router-link>
+                </button>
 
                 <form class="navbar-nav ms-auto mb-2 mb-lg-0 form">
-                    <h1>Hellow, {{ users.name }}</h1>
+                    <h1>Hellow, {{ me.name }}</h1>
                     <button class="btn">
-                        <router-link class="button" :to="`/loginuser/${users.id}`">
+                        <router-link class="button" :to="`/loginuser`">
                             <i class="bi bi-person-fill icon-white"></i>Profile
                         </router-link>
                     </button>
@@ -35,8 +40,8 @@ import api from '@/api/api';
 export default {
     name: 'HeaderPage',
     computed: {
-        users() {
-            return this.$store.getters.users;
+        me() {
+            return this.$store.getters.me;
         },
     },
     methods: {
@@ -54,7 +59,7 @@ export default {
         }
     },
     mounted() {
-        this.$store.dispatch('users');
+        this.$store.dispatch('me');
     },
 }
 </script>

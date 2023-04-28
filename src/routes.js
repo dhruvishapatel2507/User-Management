@@ -6,7 +6,9 @@ import EditUser from './components/EditUser.vue';
 import ViewUser from './components/ViewUser.vue';
 import HeaderPage from './components/HeaderPage.vue';
 import ViewLoginUser from './components/ViewLoginUser.vue';
-import ForgotPass from './components/ForgotPass.vue';
+import ChangePassword from './components/ChangePassword.vue';
+import ChangeProfile from './components/ChangeProfile.vue';
+import AddNewUser from './components/AddNewUser.vue';
 import auth from './middleware/auth';
 import guest from './middleware/guest'
 
@@ -39,12 +41,20 @@ const router = [
         component: HeaderPage
     },
     {
-        path: '/loginuser/:id',
+        path: '/loginuser',
         component: ViewLoginUser
     },
     {
-        path: '/forgotpass',
-        component: ForgotPass
+        path: '/changepassword',
+        component: ChangePassword
+    },
+    {
+        path: '/changeprofile',
+        component: ChangeProfile
+    },
+    {
+        path: '/addnewuser',
+        component: AddNewUser  
     }
 
 ];

@@ -4,21 +4,21 @@ import api from '@/api/api'
 
 Vue.use(Vuex)
 const state = {
-    users: {},
+    me: {},
 },
 
     getters = {
-        users: state => {
-            return state.users;
+        me: state => {
+            return state.me;
         }
     },
     mutations = {
-        SET_ITEMS(state, users) {
-            state.users = users
+        SET_ITEMS(state, me) {
+            state.me = me
         }
     },
     actions = {
-        async users({ commit }) {
+        async me({ commit }) {
             try {
                 const response = await api.get("/api/me");
                 commit('SET_ITEMS', response.data)
