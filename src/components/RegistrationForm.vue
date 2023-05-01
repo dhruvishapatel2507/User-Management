@@ -122,7 +122,7 @@
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Sign in</button>
             <button type="submit" class="btn btn-primary button">
-                <router-link class="button" :to="`/login`">Log In</router-link>
+                <router-link class="button" :to="`/`">Log In</router-link>
             </button>
         </div>
 
@@ -132,6 +132,7 @@
 
 <script>
 import api from '../api/api';
+import Swal from 'sweetalert2';
 
 export default {
     name: 'RegistrationForm',
@@ -297,16 +298,30 @@ export default {
                 gender: this.gender,
                 hobby: hobbyStr,
             }).then((r) => {
-                alert('submitted', r);
-                this.$router.push({
-                    path: '/home',
+                Swal.fire({
+                    title: 'User Regestration success',
+                    icon: 'success',
+                }, r).then((result) => {
+                    if (result.isConfirmed) {
+                        localStorage.setItem("token", r.data.token);
+                        window.location.reload(true);
+                        this.$router.push({
+                            path: '/home',
+                        });
+                    }
                 });
             }).catch((e) => {
-                console.log('error', e.response.data.errors);
-                if (e.response.data.errors.email) {
-                    this.$set(this.errors, 'email', 'The email has already been taken');
-                }
-            })
+                Swal.fire({
+                    title: 'Something went wrong',
+                    icon: 'error',
+                }, e).then((result) => {
+                    if (result.isConfirmed) {
+                        if (e.response.data.errors.email) {
+                            this.$set(this.errors, 'email', 'The email has already been taken');
+                        }
+                    }
+                })
+            });
         }
     }
 }

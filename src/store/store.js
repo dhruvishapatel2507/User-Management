@@ -6,7 +6,6 @@ Vue.use(Vuex)
 const state = {
     me: {},
 },
-
     getters = {
         me: state => {
             return state.me;

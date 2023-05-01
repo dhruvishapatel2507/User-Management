@@ -1,81 +1,81 @@
 <template>
-    <div>
-        <HeaderPage />
+<div>
+    <HeaderPage />
     <div class="container">
-    <h1>Edit User Details</h1>
-    <form class="row g-3" @submit.prevent="editUSer()">
-        <div class="col-md-6">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" v-model="name" />
-        </div>
-        <div class="col-md-6">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" v-model="email" />
-        </div>
+        <h1>Edit User Details</h1>
+        <form class="row g-3">
+            <div class="col-md-6">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" v-model="name" />
+            </div>
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" v-model="email" />
+            </div>
 
-        <div class="col-md-6">
-            <label for="middlename" class="form-label">middlename</label>
-            <input type="text" class="form-control" id="middlename" v-model="middlename" />
-        </div>
-        <div class="col-md-6">
-            <label for="surname" class="form-label">surname</label>
-            <input type="text" class="form-control" id="surname" v-model="surname" />
-        </div>
-        <div class="col-12">
-            <label for="address_line1" class="form-label">address_line1</label>
-            <input type="text" class="form-control" id="address_line1" placeholder="1234 Main St" v-model="address_line1" />
-        </div>
-        <div class="col-12">
-            <label for="address_line2" class="form-label">address_line2</label>
-            <input type="text" class="form-control" id="address_line2" placeholder="Apartment, studio, or floor" v-model="address_line2" />
-        </div>
-        <div class="col-md-4">
-            <label for="city" class="form-label">City</label>
-            <input type="text" class="form-control" id="city" v-model="city" />
-        </div>
-        <div class="col-md-2">
-            <label for="state" class="form-label">state</label>
-            <input type="text" class="form-control" id="state" v-model="state" />
-        </div>
-        <div class="col-md-4">
-            <label for="country" class="form-label">country</label>
-            <select id="country" class="form-select" v-model="country">
-                <option value="" selected>Choose...</option>
-                <option value="uk">uk</option>
-                <option value="India">India</option>
-                <option value="Canada">Canada</option>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <label for="zipcode" class="form-label">zipcode</label>
-            <input type="text" class="form-control" id="zipcode" v-model="zipcode" />
-        </div>
-        <div class="col-md-6">
-            <label for="phone" class="form-label">phone</label>
-            <input type="text" class="form-control" id="phone" v-model="phone" />
-        </div>
-        <div class="col-md-6">
-            <label for="birth_date" class="form-label">birth_date</label>
-            <input type="date" class="form-control" id="birth_date" v-model="birth_date" />
-        </div>
-        <div class="col-md-6">
-            <label for="gender" class="form-label">gender</label>
-            <div class="radio">
-                <div class="form-check,col-md-2">
-                    <input class="form-check-input" type="radio" name="gender" value="Male" id="Male" v-model="gender" />
-                    <label class="form-check-label" for="Male">
-                        Male
-                    </label>
-                </div>
-                <div class="form-check,col-md-2">
-                    <input class="form-check-input" type="radio" name="gender" value="Female" id="Female" v-model="gender" />
-                    <label class="form-check-label" for="Female">
-                        Female
-                    </label>
+            <div class="col-md-6">
+                <label for="middlename" class="form-label">middlename</label>
+                <input type="text" class="form-control" id="middlename" v-model="middlename" />
+            </div>
+            <div class="col-md-6">
+                <label for="surname" class="form-label">surname</label>
+                <input type="text" class="form-control" id="surname" v-model="surname" />
+            </div>
+            <div class="col-12">
+                <label for="address_line1" class="form-label">address_line1</label>
+                <input type="text" class="form-control" id="address_line1" placeholder="1234 Main St" v-model="address_line1" />
+            </div>
+            <div class="col-12">
+                <label for="address_line2" class="form-label">address_line2</label>
+                <input type="text" class="form-control" id="address_line2" placeholder="Apartment, studio, or floor" v-model="address_line2" />
+            </div>
+            <div class="col-md-4">
+                <label for="city" class="form-label">City</label>
+                <input type="text" class="form-control" id="city" v-model="city" />
+            </div>
+            <div class="col-md-2">
+                <label for="state" class="form-label">state</label>
+                <input type="text" class="form-control" id="state" v-model="state" />
+            </div>
+            <div class="col-md-4">
+                <label for="country" class="form-label">country</label>
+                <select id="country" class="form-select" v-model="country">
+                    <option value="" selected>Choose...</option>
+                    <option value="uk">uk</option>
+                    <option value="India">India</option>
+                    <option value="Canada">Canada</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="zipcode" class="form-label">zipcode</label>
+                <input type="text" class="form-control" id="zipcode" v-model="zipcode" />
+            </div>
+            <div class="col-md-6">
+                <label for="phone" class="form-label">phone</label>
+                <input type="text" class="form-control" id="phone" v-model="phone" />
+            </div>
+            <div class="col-md-6">
+                <label for="birth_date" class="form-label">birth_date</label>
+                <input type="date" class="form-control" id="birth_date" v-model="birth_date" />
+            </div>
+            <div class="col-md-6">
+                <label for="gender" class="form-label">gender</label>
+                <div class="radio">
+                    <div class="form-check,col-md-2">
+                        <input class="form-check-input" type="radio" name="gender" value="Male" id="Male" v-model="gender" />
+                        <label class="form-check-label" for="Male">
+                            Male
+                        </label>
+                    </div>
+                    <div class="form-check,col-md-2">
+                        <input class="form-check-input" type="radio" name="gender" value="Female" id="Female" v-model="gender" />
+                        <label class="form-check-label" for="Female">
+                            Female
+                        </label>
+                    </div>
                 </div>
             </div>
-            </div>
-            </form>
+        </form>
         <div class="col-md-6">
             <label for="hobby" class="form-label">hobby</label>
             <div class="radio">
@@ -100,18 +100,19 @@
             </div>
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" v-on:click="editUSer()">Submit</button>
             <button class="btn btn-primary ms-2 button">
                 <router-link class="button" :to="`/home`">Back</router-link>
             </button>
         </div>
-</div>
+    </div>
 </div>
 </template>
 
 <script>
 import api from '@/api/api';
 import HeaderPage from './HeaderPage.vue';
+import Swal from 'sweetalert2';
 
 export default {
     name: 'EditUser',
@@ -119,7 +120,7 @@ export default {
         HeaderPage,
     },
     data() {
-        return{
+        return {
             name: "",
             email: "",
             middlename: "",
@@ -138,7 +139,7 @@ export default {
     },
     mounted() {
         api.get(`/api/users/${this.$route.params.id}`).then((r) => {
-                this.name = r.data.name,
+            this.name = r.data.name,
                 this.email = r.data.email,
                 this.middlename = r.data.middlename,
                 this.surname = r.data.surname,
@@ -175,12 +176,21 @@ export default {
                 gender: this.gender,
                 hobby: hobbyStr,
             }).then((r) => {
-                alert("submitted", r)
-                this.$router.push({
-                    path: '/home'
-                })
+                Swal.fire({
+                    title: 'Update User success',
+                    icon: 'success',
+                }, r).then((result) => {
+                    if (result.isConfirmed) {
+                        this.$router.push({
+                            path: '/home'
+                        })
+                    }
+                });
             }).catch((e) => {
-                console.log("error", e)
+                Swal.fire({
+                    title: 'Something went wrong',
+                    icon: 'error',
+                }, e)
             })
         },
     },
@@ -216,8 +226,9 @@ h1 {
 .form-label {
     color: cadetblue;
 }
+
 .button {
     text-decoration: none;
-    color:white;
+    color: white;
 }
 </style>

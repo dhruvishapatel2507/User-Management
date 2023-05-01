@@ -37,6 +37,8 @@
 
 <script>
 import api from '@/api/api';
+import Swal from 'sweetalert2';
+
 export default {
     name: 'HeaderPage',
     computed: {
@@ -45,23 +47,36 @@ export default {
         },
     },
     methods: {
+
         async logout() {
-            if (confirm("do you really want to logout")) {
-                await api.post("/api/logout").then((r) => {
-                    localStorage.clear(r);
-                }).catch((e) => {
-                    console.log("error", e)
-                });
-                this.$router.push({
-                    path: '/login'
-                })
-            }
+            Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, logout!'
+
+                }).then((result) => {
+                        if (result.isConfirmed) {
+                            api.post("/api/logout").then((r) => {
+                                localStorage.clear(r);
+                                this.$router.push({
+                                path: '/'
+                            });
+                            }).catch((e) => {
+                                console.log("error", e)
+                            });  
+                        }
+
+                    })
+                },
+                mounted() {
+                    this.$store.dispatch('me');
+                },
         }
-    },
-    mounted() {
-        this.$store.dispatch('me');
-    },
-}
+    }
 </script>
 
 <style scoped>

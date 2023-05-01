@@ -19,7 +19,7 @@ const router = [
         beforeEnter:guest
     },
     {
-        path: '/login',
+        path: '/',
         component: LoginForm,
         beforeEnter:guest
     },

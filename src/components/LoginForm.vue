@@ -30,6 +30,7 @@
 
 <script>
 import api from '@/api/api';
+import Swal from 'sweetalert2';
 
 export default {
     name: 'LoginForm',
@@ -62,12 +63,23 @@ export default {
                 email: this.email,
                 password: this.password,
             }).then((r) => {
-                localStorage.setItem("token", r.data.token);
-                this.$router.push({
-                    path: '/home',
-                })
+                Swal.fire({
+                    title: 'success',
+                    icon: 'success',
+                }, r).then((result) => {
+                    if (result.isConfirmed) {
+                        localStorage.setItem("token", r.data.token);
+                        window.location.reload(true)
+                        this.$router.push({
+                            path: '/home',
+                        })
+                    }
+                });
             }).catch(() => {
-                alert('invalid email or password');
+                Swal.fire({
+                    title: 'invlid email or password',
+                    icon: 'error', 
+                })    
             })
         }
     }

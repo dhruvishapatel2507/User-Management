@@ -123,6 +123,7 @@
 <script>
 import api from '@/api/api';
 import HeaderPage from './HeaderPage.vue';
+import Swal from 'sweetalert2';
 
 export default {
     name: 'AddNewUser',
@@ -134,8 +135,6 @@ export default {
             errors: {},
             name: "",
             email: "",
-            password: "",
-            password_confirmation: "",
             middlename: "",
             surname: "",
             address_line1: "",
@@ -257,8 +256,6 @@ export default {
             await api.post("/api/users", {
                 name: this.name,
                 email: this.email,
-                password: this.password,
-                password_confirmation: this.password_confirmation,
                 middlename: this.middlename,
                 surname: this.surname,
                 address_line1: this.address_line1,
@@ -272,16 +269,28 @@ export default {
                 gender: this.gender,
                 hobby: hobbyStr,
             }).then((r) => {
-                alert('submitted', r);
-                this.$router.push({
-                    path: '/home',
-                });
-            }).catch((e) => {
-                console.log('error', e.response.data.errors);
-                if (e.response.data.errors.email) {
-                    this.$set(this.errors, 'email', 'The email has already been taken');
-                }
+                Swal.fire({
+                    title: 'Adding New User success',
+                    icon: 'success',
+                }, r).then((result) => {
+                    if (result.isConfirmed) {
+                        this.$router.push({
+                            path: '/home',
+                        });
+                    }
             })
+            }).catch((e) => {
+                Swal.fire({
+                    title: 'Something went wrong',
+                    icon: 'error',
+                }, e).then((result) => {
+                    if (result.isConfirmed) {
+                        if (e.response.data.errors.email) {
+                            this.$set(this.errors, 'email', 'The email has already been taken');
+                        }
+                    }
+                })
+            });
         }
     }
 }
