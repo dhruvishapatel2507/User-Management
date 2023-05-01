@@ -112,7 +112,6 @@
 <script>
 import HeaderPage from './HeaderPage.vue';
 import api from '@/api/api';
-import Swal from 'sweetalert2';
 
 export default {
     name: "ChangeProfile",
@@ -148,22 +147,12 @@ export default {
                 gender: this.me.gender,
                 hobby: hobbyStr,
             }).then((r) => {
-                Swal.fire({
-                    title: 'Changed Profile success',
-                    icon: 'success',
-                }, r).then((result) => {
-                    if (result.isConfirmed) {
-                        this.$router.push({
-                            path: '/loginuser'
-                        })
-                    }
-                });
-
+                alert("submitted", r)
+                this.$router.push({
+                    path: '/loginuser'
+                })
             }).catch((e) => {
-                Swal.fire({
-                    title: 'Something went wrong',
-                    icon: 'error',
-                }, e)
+                console.log("error", e)
             })
 
         }

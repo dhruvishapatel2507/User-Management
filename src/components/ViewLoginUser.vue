@@ -2,7 +2,7 @@
 <div>
     <HeaderPage />
     <div class="container">
-        <h1 class="text-center">Login USer Details</h1>
+        <h1 class="text-center">User Profile </h1>
         <table class="table table-striped p-3 ">
             <tbody>
                 <tr>
